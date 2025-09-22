@@ -49,7 +49,24 @@ services:
       - "AWS_REGION=us-east-1"
       - "AWS_ACCESS_KEY_ID=admin"  # Minio username
       - "AWS_SECRET_ACCESS_KEY=password"  # Minio password
-      
+
+  spark-submit:
+    image: bitnami/spark:latest
+    volumes:
+      - ./jobs:/opt/bitnami/spark/jobs
+      - ./dags:/opt/airflow/dags
+    environment:
+      - SPARK_MODE=master
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=admin
+      - AWS_SECRET_ACCESS_KEY=password
+    networks:
+      - data-stack
+    depends_on:
+      - spark-master
+      - nessie
+      - minio
+
     # Jupyter Notebook con PySpark
   jupyter:
     image: jupyter/pyspark-notebook
@@ -105,6 +122,11 @@ services:
       airflow db migrate &&
       airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin &&
       airflow scheduler"
+  airflow-init:
+    <<: *airflow-common
+    command: version
+    profiles: ["init"]
+
 
   # MinIO (Almacenamiento S3-compatible)
   minio:
