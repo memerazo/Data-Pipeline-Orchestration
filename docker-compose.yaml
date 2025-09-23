@@ -17,6 +17,7 @@ x-airflow-common: &airflow-common
   networks:
     - data-stack
   environment:
+    - AIRFLOW_CONN_SPARK_DEFAULT=spark://spark-master:7077
     - AIRFLOW__CORE__EXECUTOR=LocalExecutor
     - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
     - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=true

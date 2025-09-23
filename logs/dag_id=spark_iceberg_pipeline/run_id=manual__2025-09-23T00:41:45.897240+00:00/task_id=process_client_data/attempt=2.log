@@ -1,0 +1,48 @@
+[2025-09-23T00:46:50.734+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-09-23T00:46:50.806+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: spark_iceberg_pipeline.process_client_data manual__2025-09-23T00:41:45.897240+00:00 [queued]>
+[2025-09-23T00:46:50.822+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: spark_iceberg_pipeline.process_client_data manual__2025-09-23T00:41:45.897240+00:00 [queued]>
+[2025-09-23T00:46:50.822+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2025-09-23T00:46:50.837+0000] {taskinstance.py:2330} INFO - Executing <Task(SparkSubmitOperator): process_client_data> on 2025-09-23 00:41:45.897240+00:00
+[2025-09-23T00:46:50.855+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=545) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-09-23T00:46:50.856+0000] {standard_task_runner.py:64} INFO - Started process 547 to run task
+[2025-09-23T00:46:50.850+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'spark_iceberg_pipeline', 'process_client_data', 'manual__2025-09-23T00:41:45.897240+00:00', '--job-id', '11', '--raw', '--subdir', 'DAGS_FOLDER/spark_iceberg_pipeline.py', '--cfg-path', '/tmp/tmp75_t69cv']
+[2025-09-23T00:46:50.857+0000] {standard_task_runner.py:91} INFO - Job 11: Subtask process_client_data
+[2025-09-23T00:46:50.938+0000] {task_command.py:426} INFO - Running <TaskInstance: spark_iceberg_pipeline.process_client_data manual__2025-09-23T00:41:45.897240+00:00 [running]> on host 3b4bdc1cae36
+[2025-09-23T00:46:51.058+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='spark_iceberg_pipeline' AIRFLOW_CTX_TASK_ID='process_client_data' AIRFLOW_CTX_EXECUTION_DATE='2025-09-23T00:41:45.897240+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-23T00:41:45.897240+00:00'
+[2025-09-23T00:46:51.059+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-09-23T00:46:51.082+0000] {spark_submit.py:304} INFO - Could not load connection string spark_default, defaulting to yarn
+[2025-09-23T00:46:51.085+0000] {spark_submit.py:473} INFO - Spark-Submit cmd: spark-submit --master yarn --conf spark.jars.packages=org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,org.projectnessie.nessie-integrations:nessie-spark-extensions-3.5_2.12:0.77.1,software.amazon.awssdk:bundle:2.24.8 --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions --conf spark.sql.catalog.nessie=org.apache.iceberg.spark.SparkCatalog --conf spark.sql.catalog.nessie.uri=http://nessie:19120/api/v1 --conf spark.sql.catalog.nessie.ref=main --conf spark.sql.catalog.nessie.authentication.type=NONE --conf spark.sql.catalog.nessie.catalog-impl=org.apache.iceberg.nessie.NessieCatalog --conf spark.sql.catalog.nessie.s3.endpoint=http://minio:9000 --conf spark.sql.catalog.nessie.warehouse=s3://gold/ --conf spark.sql.catalog.nessie.io-impl=org.apache.iceberg.aws.s3.S3FileIO --conf spark.hadoop.fs.s3a.endpoint=http://minio:9000 --conf spark.hadoop.fs.s3a.access.key=admin --conf spark.hadoop.fs.s3a.secret.key=****** --conf spark.hadoop.fs.s3a.path.style.access=true --name arrow-spark --verbose /opt/***/jobs/process_client_data.py
+[2025-09-23T00:46:52.706+0000] {spark_submit.py:649} INFO - Using properties file: null
+[2025-09-23T00:46:52.807+0000] {spark_submit.py:649} INFO - Exception in thread "main" org.apache.spark.SparkException: When running with master 'yarn' either HADOOP_CONF_DIR or YARN_CONF_DIR must be set in the environment.
+[2025-09-23T00:46:52.807+0000] {spark_submit.py:649} INFO - at org.apache.spark.deploy.SparkSubmitArguments.error(SparkSubmitArguments.scala:634)
+[2025-09-23T00:46:52.808+0000] {spark_submit.py:649} INFO - at org.apache.spark.deploy.SparkSubmitArguments.validateSubmitArguments(SparkSubmitArguments.scala:274)
+[2025-09-23T00:46:52.808+0000] {spark_submit.py:649} INFO - at org.apache.spark.deploy.SparkSubmitArguments.validateArguments(SparkSubmitArguments.scala:234)
+[2025-09-23T00:46:52.809+0000] {spark_submit.py:649} INFO - at org.apache.spark.deploy.SparkSubmitArguments.<init>(SparkSubmitArguments.scala:119)
+[2025-09-23T00:46:52.809+0000] {spark_submit.py:649} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2$$anon$3.<init>(SparkSubmit.scala:1029)
+[2025-09-23T00:46:52.809+0000] {spark_submit.py:649} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2.parseArguments(SparkSubmit.scala:1029)
+[2025-09-23T00:46:52.809+0000] {spark_submit.py:649} INFO - at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:85)
+[2025-09-23T00:46:52.810+0000] {spark_submit.py:649} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1046)
+[2025-09-23T00:46:52.810+0000] {spark_submit.py:649} INFO - at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1055)
+[2025-09-23T00:46:52.810+0000] {spark_submit.py:649} INFO - at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+[2025-09-23T00:46:52.831+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-09-23T00:46:52.840+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 176, in execute
+    self._hook.submit(self.application)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 575, in submit
+    raise AirflowException(
+airflow.exceptions.AirflowException: Cannot execute: spark-submit --master yarn --conf spark.jars.packages=org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,org.projectnessie.nessie-integrations:nessie-spark-extensions-3.5_2.12:0.77.1,software.amazon.awssdk:bundle:2.24.8 --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions --conf spark.sql.catalog.nessie=org.apache.iceberg.spark.SparkCatalog --conf spark.sql.catalog.nessie.uri=http://nessie:19120/api/v1 --conf spark.sql.catalog.nessie.ref=main --conf spark.sql.catalog.nessie.authentication.type=NONE --conf spark.sql.catalog.nessie.catalog-impl=org.apache.iceberg.nessie.NessieCatalog --conf spark.sql.catalog.nessie.s3.endpoint=http://minio:9000 --conf spark.sql.catalog.nessie.warehouse=s3://gold/ --conf spark.sql.catalog.nessie.io-impl=org.apache.iceberg.aws.s3.S3FileIO --conf spark.hadoop.fs.s3a.endpoint=http://minio:9000 --conf spark.hadoop.fs.s3a.access.key=admin --conf spark.hadoop.fs.s3a.secret.key=****** --conf spark.hadoop.fs.s3a.path.style.access=true --name arrow-spark --verbose /opt/***/jobs/process_client_data.py. Error code is: 1.
+[2025-09-23T00:46:52.844+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=spark_iceberg_pipeline, task_id=process_client_data, run_id=manual__2025-09-23T00:41:45.897240+00:00, execution_date=20250923T004145, start_date=20250923T004650, end_date=20250923T004652
+[2025-09-23T00:46:52.855+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 11 for task process_client_data (Cannot execute: spark-submit --master yarn --conf spark.jars.packages=org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,org.projectnessie.nessie-integrations:nessie-spark-extensions-3.5_2.12:0.77.1,software.amazon.awssdk:bundle:2.24.8 --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions --conf spark.sql.catalog.nessie=org.apache.iceberg.spark.SparkCatalog --conf spark.sql.catalog.nessie.uri=http://nessie:19120/api/v1 --conf spark.sql.catalog.nessie.ref=main --conf spark.sql.catalog.nessie.authentication.type=NONE --conf spark.sql.catalog.nessie.catalog-impl=org.apache.iceberg.nessie.NessieCatalog --conf spark.sql.catalog.nessie.s3.endpoint=http://minio:9000 --conf spark.sql.catalog.nessie.warehouse=s3://gold/ --conf spark.sql.catalog.nessie.io-impl=org.apache.iceberg.aws.s3.S3FileIO --conf spark.hadoop.fs.s3a.endpoint=http://minio:9000 --conf spark.hadoop.fs.s3a.access.key=admin --conf spark.hadoop.fs.s3a.secret.key=****** --conf spark.hadoop.fs.s3a.path.style.access=true --name arrow-spark --verbose /opt/***/jobs/process_client_data.py. Error code is: 1.; 547)
+[2025-09-23T00:46:52.889+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2025-09-23T00:46:52.906+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-09-23T00:46:52.909+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

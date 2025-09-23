@@ -15,6 +15,51 @@ default_args = {
     'retry_delay': timedelta(minutes=5)
 }
 
+spark_params = {
+    "conn_id": "spark_default",
+    "application": "/opt/airflow/jobs/process_taxi_data.py",  # tu script PySpark
+    "deploy_mode": "client",
+    "packages": (
+        "org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,"
+        "org.projectnessie.nessie-integrations:nessie-spark-extensions-3.5_2.12:0.77.1,"
+        "org.apache.hadoop:hadoop-aws:3.3.4,"
+        "com.amazonaws:aws-java-sdk-bundle:1.12.262"
+    ),
+    "verbose": True,
+    "conf": {
+        "spark.master": "spark://spark-master:7077"  # 🔹 aquí fuerzas el master
+    }
+}
+
+process_taxi_data = SparkSubmitOperator(
+    task_id='process_taxi_data',
+    application='/opt/airflow/jobs/process_taxi_data.py',
+    conn_id='spark_default',
+    verbose=True,
+    conf={
+        'spark.master': 'spark://spark-master:7077',   # Fuerza Spark standalone
+        'spark.jars.packages': (
+            'org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,'
+            'org.projectnessie.nessie-integrations:nessie-spark-extensions-3.5_2.12:0.77.1,'
+            'software.amazon.awssdk:s3:2.24.8'
+        ),
+        'spark.sql.extensions': 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions',
+        'spark.sql.catalog.nessie': 'org.apache.iceberg.spark.SparkCatalog',
+        'spark.sql.catalog.nessie.uri': 'http://nessie:19120/api/v1',
+        'spark.sql.catalog.nessie.ref': 'main',
+        'spark.sql.catalog.nessie.authentication.type': 'NONE',
+        'spark.sql.catalog.nessie.catalog-impl': 'org.apache.iceberg.nessie.NessieCatalog',
+        'spark.sql.catalog.nessie.s3.endpoint': 'http://minio:9000',
+        'spark.sql.catalog.nessie.warehouse': 's3://gold/',
+        'spark.sql.catalog.nessie.io-impl': 'org.apache.iceberg.aws.s3.S3FileIO',
+        'spark.hadoop.fs.s3a.endpoint': 'http://minio:9000',
+        'spark.hadoop.fs.s3a.access.key': 'admin',
+        'spark.hadoop.fs.s3a.secret.key': 'password',
+        'spark.hadoop.fs.s3a.path.style.access': 'true'
+    }
+)
+
+
 with DAG(
     'spark_iceberg_pipeline',
     default_args=default_args,
