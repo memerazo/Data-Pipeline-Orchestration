@@ -27,6 +27,7 @@ x-airflow-common: &airflow-common
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
+    - ./jobs:/opt/airflow/jobs
   depends_on:
     - postgres
 
@@ -44,6 +45,8 @@ services:
       - AWS_REGION=us-east-1
       - AWS_ACCESS_KEY_ID=admin  # Minio username
       - AWS_SECRET_ACCESS_KEY=password  # Minio password  
+    volumes: 
+      - ./jobs:/opt/bitnami/spark/jobs
 
   # Spark Worker
   spark-worker:
@@ -60,6 +63,8 @@ services:
       - AWS_REGION=us-east-1
       - AWS_ACCESS_KEY_ID=admin  # Minio username
       - AWS_SECRET_ACCESS_KEY=password  # Minio password
+    volumes:
+      - ./jobs:/opt/bitnami/spark/jobs
       
   # Jupyter Notebook con PySpark
   jupyter:

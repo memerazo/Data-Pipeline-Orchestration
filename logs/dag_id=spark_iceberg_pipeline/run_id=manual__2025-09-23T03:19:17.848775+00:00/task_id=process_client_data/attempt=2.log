@@ -1,0 +1,146 @@
+[2025-09-23T03:24:41.614+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-09-23T03:24:41.687+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: spark_iceberg_pipeline.process_client_data manual__2025-09-23T03:19:17.848775+00:00 [queued]>
+[2025-09-23T03:24:41.694+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: spark_iceberg_pipeline.process_client_data manual__2025-09-23T03:19:17.848775+00:00 [queued]>
+[2025-09-23T03:24:41.694+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2025-09-23T03:24:41.703+0000] {taskinstance.py:2330} INFO - Executing <Task(SparkSubmitOperator): process_client_data> on 2025-09-23 03:19:17.848775+00:00
+[2025-09-23T03:24:41.715+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=701) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-09-23T03:24:41.716+0000] {standard_task_runner.py:64} INFO - Started process 703 to run task
+[2025-09-23T03:24:41.716+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'spark_iceberg_pipeline', 'process_client_data', 'manual__2025-09-23T03:19:17.848775+00:00', '--job-id', '12', '--raw', '--subdir', 'DAGS_FOLDER/spark_iceberg_pipeline.py', '--cfg-path', '/tmp/tmp31kr9j8a']
+[2025-09-23T03:24:41.718+0000] {standard_task_runner.py:91} INFO - Job 12: Subtask process_client_data
+[2025-09-23T03:24:41.762+0000] {task_command.py:426} INFO - Running <TaskInstance: spark_iceberg_pipeline.process_client_data manual__2025-09-23T03:19:17.848775+00:00 [running]> on host dbe0f3c9a3f2
+[2025-09-23T03:24:41.837+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='spark_iceberg_pipeline' AIRFLOW_CTX_TASK_ID='process_client_data' AIRFLOW_CTX_EXECUTION_DATE='2025-09-23T03:19:17.848775+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-23T03:19:17.848775+00:00'
+[2025-09-23T03:24:41.838+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-09-23T03:24:41.852+0000] {base.py:84} INFO - Using connection ID 'spark_default' for task execution.
+[2025-09-23T03:24:41.854+0000] {spark_submit.py:473} INFO - Spark-Submit cmd: spark-submit --master spark-master:7077 --conf spark.jars.packages=org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,org.projectnessie.nessie-integrations:nessie-spark-extensions-3.5_2.12:0.77.1,software.amazon.awssdk:bundle:2.24.8 --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions --conf spark.sql.catalog.nessie=org.apache.iceberg.spark.SparkCatalog --conf spark.sql.catalog.nessie.uri=http://nessie:19120/api/v1 --conf spark.sql.catalog.nessie.ref=main --conf spark.sql.catalog.nessie.authentication.type=NONE --conf spark.sql.catalog.nessie.catalog-impl=org.apache.iceberg.nessie.NessieCatalog --conf spark.sql.catalog.nessie.s3.endpoint=http://minio:9000 --conf spark.sql.catalog.nessie.warehouse=s3://gold/ --conf spark.sql.catalog.nessie.io-impl=org.apache.iceberg.aws.s3.S3FileIO --conf spark.hadoop.fs.s3a.endpoint=http://minio:9000 --conf spark.hadoop.fs.s3a.access.key=admin --conf spark.hadoop.fs.s3a.secret.key=****** --conf spark.hadoop.fs.s3a.path.style.access=true --name arrow-spark --verbose /opt/***/jobs/process_client_data.py
+[2025-09-23T03:24:43.975+0000] {spark_submit.py:649} INFO - Using properties file: null
+[2025-09-23T03:24:44.075+0000] {spark_submit.py:649} INFO - Parsed arguments:
+[2025-09-23T03:24:44.075+0000] {spark_submit.py:649} INFO - master                  spark-master:7077
+[2025-09-23T03:24:44.075+0000] {spark_submit.py:649} INFO - deployMode              null
+[2025-09-23T03:24:44.075+0000] {spark_submit.py:649} INFO - executorMemory          null
+[2025-09-23T03:24:44.075+0000] {spark_submit.py:649} INFO - executorCores           null
+[2025-09-23T03:24:44.075+0000] {spark_submit.py:649} INFO - totalExecutorCores      null
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - propertiesFile          null
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - driverMemory            null
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - driverCores             null
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - driverExtraClassPath    null
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - driverExtraLibraryPath  null
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - driverExtraJavaOptions  null
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - supervise               false
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - queue                   null
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - numExecutors            null
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - files                   null
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - pyFiles                 null
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - archives                null
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - mainClass               null
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - primaryResource         file:/opt/***/jobs/process_client_data.py
+[2025-09-23T03:24:44.076+0000] {spark_submit.py:649} INFO - name                    arrow-spark
+[2025-09-23T03:24:44.077+0000] {spark_submit.py:649} INFO - childArgs               []
+[2025-09-23T03:24:44.077+0000] {spark_submit.py:649} INFO - jars                    null
+[2025-09-23T03:24:44.077+0000] {spark_submit.py:649} INFO - packages                org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,org.projectnessie.nessie-integrations:nessie-spark-extensions-3.5_2.12:0.77.1,software.amazon.awssdk:bundle:2.24.8
+[2025-09-23T03:24:44.077+0000] {spark_submit.py:649} INFO - packagesExclusions      null
+[2025-09-23T03:24:44.077+0000] {spark_submit.py:649} INFO - repositories            null
+[2025-09-23T03:24:44.077+0000] {spark_submit.py:649} INFO - verbose                 true
+[2025-09-23T03:24:44.077+0000] {spark_submit.py:649} INFO - 
+[2025-09-23T03:24:44.077+0000] {spark_submit.py:649} INFO - Spark properties used, including those specified through
+[2025-09-23T03:24:44.077+0000] {spark_submit.py:649} INFO - --conf and those from the properties file null:
+[2025-09-23T03:24:44.077+0000] {spark_submit.py:649} INFO - (spark.hadoop.fs.s3a.access.key,*********(redacted))
+[2025-09-23T03:24:44.077+0000] {spark_submit.py:649} INFO - (spark.hadoop.fs.s3a.endpoint,http://minio:9000)
+[2025-09-23T03:24:44.077+0000] {spark_submit.py:649} INFO - (spark.hadoop.fs.s3a.path.style.access,true)
+[2025-09-23T03:24:44.078+0000] {spark_submit.py:649} INFO - (spark.hadoop.fs.s3a.secret.key,*********(redacted))
+[2025-09-23T03:24:44.078+0000] {spark_submit.py:649} INFO - (spark.jars.packages,org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,org.projectnessie.nessie-integrations:nessie-spark-extensions-3.5_2.12:0.77.1,software.amazon.awssdk:bundle:2.24.8)
+[2025-09-23T03:24:44.078+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie,org.apache.iceberg.spark.SparkCatalog)
+[2025-09-23T03:24:44.078+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.authentication.type,NONE)
+[2025-09-23T03:24:44.078+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.catalog-impl,org.apache.iceberg.nessie.NessieCatalog)
+[2025-09-23T03:24:44.078+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.io-impl,org.apache.iceberg.aws.s3.S3FileIO)
+[2025-09-23T03:24:44.078+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.ref,main)
+[2025-09-23T03:24:44.078+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.s3.endpoint,http://minio:9000)
+[2025-09-23T03:24:44.078+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.uri,http://nessie:19120/api/v1)
+[2025-09-23T03:24:44.078+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.warehouse,s3://gold/)
+[2025-09-23T03:24:44.078+0000] {spark_submit.py:649} INFO - (spark.sql.extensions,org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions)
+[2025-09-23T03:24:44.078+0000] {spark_submit.py:649} INFO - 
+[2025-09-23T03:24:44.078+0000] {spark_submit.py:649} INFO - 
+[2025-09-23T03:24:44.196+0000] {spark_submit.py:649} INFO - :: loading settings :: url = jar:file:/home/***/.local/lib/python3.12/site-packages/pyspark/jars/ivy-2.5.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
+[2025-09-23T03:24:44.332+0000] {spark_submit.py:649} INFO - Ivy Default Cache set to: /home/***/.ivy2/cache
+[2025-09-23T03:24:44.332+0000] {spark_submit.py:649} INFO - The jars for the packages stored in: /home/***/.ivy2/jars
+[2025-09-23T03:24:44.339+0000] {spark_submit.py:649} INFO - org.apache.iceberg#iceberg-spark-runtime-3.5_2.12 added as a dependency
+[2025-09-23T03:24:44.340+0000] {spark_submit.py:649} INFO - org.projectnessie.nessie-integrations#nessie-spark-extensions-3.5_2.12 added as a dependency
+[2025-09-23T03:24:44.340+0000] {spark_submit.py:649} INFO - software.amazon.awssdk#bundle added as a dependency
+[2025-09-23T03:24:44.341+0000] {spark_submit.py:649} INFO - :: resolving dependencies :: org.apache.spark#spark-submit-parent-13933b3b-ef2a-42fa-a29b-3bab6272757a;1.0
+[2025-09-23T03:24:44.341+0000] {spark_submit.py:649} INFO - confs: [default]
+[2025-09-23T03:24:44.437+0000] {spark_submit.py:649} INFO - found org.apache.iceberg#iceberg-spark-runtime-3.5_2.12;1.5.0 in central
+[2025-09-23T03:24:44.452+0000] {spark_submit.py:649} INFO - found org.projectnessie.nessie-integrations#nessie-spark-extensions-3.5_2.12;0.77.1 in central
+[2025-09-23T03:24:44.474+0000] {spark_submit.py:649} INFO - found software.amazon.awssdk#bundle;2.24.8 in central
+[2025-09-23T03:24:44.494+0000] {spark_submit.py:649} INFO - :: resolution report :: resolve 147ms :: artifacts dl 7ms
+[2025-09-23T03:24:44.495+0000] {spark_submit.py:649} INFO - :: modules in use:
+[2025-09-23T03:24:44.495+0000] {spark_submit.py:649} INFO - org.apache.iceberg#iceberg-spark-runtime-3.5_2.12;1.5.0 from central in [default]
+[2025-09-23T03:24:44.496+0000] {spark_submit.py:649} INFO - org.projectnessie.nessie-integrations#nessie-spark-extensions-3.5_2.12;0.77.1 from central in [default]
+[2025-09-23T03:24:44.496+0000] {spark_submit.py:649} INFO - software.amazon.awssdk#bundle;2.24.8 from central in [default]
+[2025-09-23T03:24:44.496+0000] {spark_submit.py:649} INFO - ---------------------------------------------------------------------
+[2025-09-23T03:24:44.496+0000] {spark_submit.py:649} INFO - |                  |            modules            ||   artifacts   |
+[2025-09-23T03:24:44.497+0000] {spark_submit.py:649} INFO - |       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+[2025-09-23T03:24:44.497+0000] {spark_submit.py:649} INFO - ---------------------------------------------------------------------
+[2025-09-23T03:24:44.497+0000] {spark_submit.py:649} INFO - |      default     |   3   |   0   |   0   |   0   ||   3   |   0   |
+[2025-09-23T03:24:44.497+0000] {spark_submit.py:649} INFO - ---------------------------------------------------------------------
+[2025-09-23T03:24:44.499+0000] {spark_submit.py:649} INFO - :: retrieving :: org.apache.spark#spark-submit-parent-13933b3b-ef2a-42fa-a29b-3bab6272757a
+[2025-09-23T03:24:44.500+0000] {spark_submit.py:649} INFO - confs: [default]
+[2025-09-23T03:24:44.507+0000] {spark_submit.py:649} INFO - 0 artifacts copied, 3 already retrieved (0kB/7ms)
+[2025-09-23T03:24:44.727+0000] {spark_submit.py:649} INFO - 25/09/23 03:24:44 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2025-09-23T03:24:44.936+0000] {spark_submit.py:649} INFO - Main class:
+[2025-09-23T03:24:44.937+0000] {spark_submit.py:649} INFO - org.apache.spark.deploy.PythonRunner
+[2025-09-23T03:24:44.937+0000] {spark_submit.py:649} INFO - Arguments:
+[2025-09-23T03:24:44.937+0000] {spark_submit.py:649} INFO - file:/opt/***/jobs/process_client_data.py
+[2025-09-23T03:24:44.938+0000] {spark_submit.py:649} INFO - file:///home/***/.ivy2/jars/org.apache.iceberg_iceberg-spark-runtime-3.5_2.12-1.5.0.jar,file:///home/***/.ivy2/jars/org.projectnessie.nessie-integrations_nessie-spark-extensions-3.5_2.12-0.77.1.jar,file:///home/***/.ivy2/jars/software.amazon.awssdk_bundle-2.24.8.jar
+[2025-09-23T03:24:44.939+0000] {spark_submit.py:649} INFO - Spark config:
+[2025-09-23T03:24:44.939+0000] {spark_submit.py:649} INFO - (spark.app.name,arrow-spark)
+[2025-09-23T03:24:44.939+0000] {spark_submit.py:649} INFO - (spark.app.submitTime,1758597884925)
+[2025-09-23T03:24:44.939+0000] {spark_submit.py:649} INFO - (spark.files,file:///home/***/.ivy2/jars/org.apache.iceberg_iceberg-spark-runtime-3.5_2.12-1.5.0.jar,file:///home/***/.ivy2/jars/org.projectnessie.nessie-integrations_nessie-spark-extensions-3.5_2.12-0.77.1.jar,file:///home/***/.ivy2/jars/software.amazon.awssdk_bundle-2.24.8.jar)
+[2025-09-23T03:24:44.939+0000] {spark_submit.py:649} INFO - (spark.hadoop.fs.s3a.access.key,*********(redacted))
+[2025-09-23T03:24:44.939+0000] {spark_submit.py:649} INFO - (spark.hadoop.fs.s3a.endpoint,http://minio:9000)
+[2025-09-23T03:24:44.940+0000] {spark_submit.py:649} INFO - (spark.hadoop.fs.s3a.path.style.access,true)
+[2025-09-23T03:24:44.940+0000] {spark_submit.py:649} INFO - (spark.hadoop.fs.s3a.secret.key,*********(redacted))
+[2025-09-23T03:24:44.940+0000] {spark_submit.py:649} INFO - (spark.jars,file:///home/***/.ivy2/jars/org.apache.iceberg_iceberg-spark-runtime-3.5_2.12-1.5.0.jar,file:///home/***/.ivy2/jars/org.projectnessie.nessie-integrations_nessie-spark-extensions-3.5_2.12-0.77.1.jar,file:///home/***/.ivy2/jars/software.amazon.awssdk_bundle-2.24.8.jar)
+[2025-09-23T03:24:44.940+0000] {spark_submit.py:649} INFO - (spark.jars.packages,org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,org.projectnessie.nessie-integrations:nessie-spark-extensions-3.5_2.12:0.77.1,software.amazon.awssdk:bundle:2.24.8)
+[2025-09-23T03:24:44.940+0000] {spark_submit.py:649} INFO - (spark.master,spark-master:7077)
+[2025-09-23T03:24:44.940+0000] {spark_submit.py:649} INFO - (spark.repl.local.jars,file:///home/***/.ivy2/jars/org.apache.iceberg_iceberg-spark-runtime-3.5_2.12-1.5.0.jar,file:///home/***/.ivy2/jars/org.projectnessie.nessie-integrations_nessie-spark-extensions-3.5_2.12-0.77.1.jar,file:///home/***/.ivy2/jars/software.amazon.awssdk_bundle-2.24.8.jar)
+[2025-09-23T03:24:44.940+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie,org.apache.iceberg.spark.SparkCatalog)
+[2025-09-23T03:24:44.940+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.authentication.type,NONE)
+[2025-09-23T03:24:44.940+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.catalog-impl,org.apache.iceberg.nessie.NessieCatalog)
+[2025-09-23T03:24:44.940+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.io-impl,org.apache.iceberg.aws.s3.S3FileIO)
+[2025-09-23T03:24:44.941+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.ref,main)
+[2025-09-23T03:24:44.941+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.s3.endpoint,http://minio:9000)
+[2025-09-23T03:24:44.941+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.uri,http://nessie:19120/api/v1)
+[2025-09-23T03:24:44.941+0000] {spark_submit.py:649} INFO - (spark.sql.catalog.nessie.warehouse,s3://gold/)
+[2025-09-23T03:24:44.941+0000] {spark_submit.py:649} INFO - (spark.sql.extensions,org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions)
+[2025-09-23T03:24:44.941+0000] {spark_submit.py:649} INFO - (spark.submit.deployMode,client)
+[2025-09-23T03:24:44.941+0000] {spark_submit.py:649} INFO - (spark.submit.pyFiles,/home/***/.ivy2/jars/org.apache.iceberg_iceberg-spark-runtime-3.5_2.12-1.5.0.jar,/home/***/.ivy2/jars/org.projectnessie.nessie-integrations_nessie-spark-extensions-3.5_2.12-0.77.1.jar,/home/***/.ivy2/jars/software.amazon.awssdk_bundle-2.24.8.jar)
+[2025-09-23T03:24:44.941+0000] {spark_submit.py:649} INFO - Classpath elements:
+[2025-09-23T03:24:44.941+0000] {spark_submit.py:649} INFO - file:///home/***/.ivy2/jars/org.apache.iceberg_iceberg-spark-runtime-3.5_2.12-1.5.0.jar
+[2025-09-23T03:24:44.941+0000] {spark_submit.py:649} INFO - file:///home/***/.ivy2/jars/org.projectnessie.nessie-integrations_nessie-spark-extensions-3.5_2.12-0.77.1.jar
+[2025-09-23T03:24:44.941+0000] {spark_submit.py:649} INFO - file:///home/***/.ivy2/jars/software.amazon.awssdk_bundle-2.24.8.jar
+[2025-09-23T03:24:44.942+0000] {spark_submit.py:649} INFO - 
+[2025-09-23T03:24:44.942+0000] {spark_submit.py:649} INFO - 
+[2025-09-23T03:24:45.241+0000] {spark_submit.py:649} INFO - python3: can't open file '/opt/***/jobs/process_client_data.py': [Errno 2] No such file or directory
+[2025-09-23T03:24:45.256+0000] {spark_submit.py:649} INFO - 25/09/23 03:24:45 INFO ShutdownHookManager: Shutdown hook called
+[2025-09-23T03:24:45.257+0000] {spark_submit.py:649} INFO - 25/09/23 03:24:45 INFO ShutdownHookManager: Deleting directory /tmp/spark-36a58d1e-31ca-4bd4-bd11-61d4e4c4e355
+[2025-09-23T03:24:45.294+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-09-23T03:24:45.302+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 176, in execute
+    self._hook.submit(self.application)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 575, in submit
+    raise AirflowException(
+airflow.exceptions.AirflowException: Cannot execute: spark-submit --master spark-master:7077 --conf spark.jars.packages=org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,org.projectnessie.nessie-integrations:nessie-spark-extensions-3.5_2.12:0.77.1,software.amazon.awssdk:bundle:2.24.8 --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions --conf spark.sql.catalog.nessie=org.apache.iceberg.spark.SparkCatalog --conf spark.sql.catalog.nessie.uri=http://nessie:19120/api/v1 --conf spark.sql.catalog.nessie.ref=main --conf spark.sql.catalog.nessie.authentication.type=NONE --conf spark.sql.catalog.nessie.catalog-impl=org.apache.iceberg.nessie.NessieCatalog --conf spark.sql.catalog.nessie.s3.endpoint=http://minio:9000 --conf spark.sql.catalog.nessie.warehouse=s3://gold/ --conf spark.sql.catalog.nessie.io-impl=org.apache.iceberg.aws.s3.S3FileIO --conf spark.hadoop.fs.s3a.endpoint=http://minio:9000 --conf spark.hadoop.fs.s3a.access.key=admin --conf spark.hadoop.fs.s3a.secret.key=****** --conf spark.hadoop.fs.s3a.path.style.access=true --name arrow-spark --verbose /opt/***/jobs/process_client_data.py. Error code is: 2.
+[2025-09-23T03:24:45.307+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=spark_iceberg_pipeline, task_id=process_client_data, run_id=manual__2025-09-23T03:19:17.848775+00:00, execution_date=20250923T031917, start_date=20250923T032441, end_date=20250923T032445
+[2025-09-23T03:24:45.317+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 12 for task process_client_data (Cannot execute: spark-submit --master spark-master:7077 --conf spark.jars.packages=org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,org.projectnessie.nessie-integrations:nessie-spark-extensions-3.5_2.12:0.77.1,software.amazon.awssdk:bundle:2.24.8 --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions --conf spark.sql.catalog.nessie=org.apache.iceberg.spark.SparkCatalog --conf spark.sql.catalog.nessie.uri=http://nessie:19120/api/v1 --conf spark.sql.catalog.nessie.ref=main --conf spark.sql.catalog.nessie.authentication.type=NONE --conf spark.sql.catalog.nessie.catalog-impl=org.apache.iceberg.nessie.NessieCatalog --conf spark.sql.catalog.nessie.s3.endpoint=http://minio:9000 --conf spark.sql.catalog.nessie.warehouse=s3://gold/ --conf spark.sql.catalog.nessie.io-impl=org.apache.iceberg.aws.s3.S3FileIO --conf spark.hadoop.fs.s3a.endpoint=http://minio:9000 --conf spark.hadoop.fs.s3a.access.key=admin --conf spark.hadoop.fs.s3a.secret.key=****** --conf spark.hadoop.fs.s3a.path.style.access=true --name arrow-spark --verbose /opt/***/jobs/process_client_data.py. Error code is: 2.; 703)
+[2025-09-23T03:24:45.357+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2025-09-23T03:24:45.378+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-09-23T03:24:45.382+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
