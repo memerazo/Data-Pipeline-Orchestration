@@ -1,0 +1,26 @@
+FROM bitnami/spark:latest
+
+USER root
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instalar paquetes Python necesarios para Spark/Jupyter
+RUN pip3 install --no-cache-dir \
+    pandas \
+    numpy \
+    boto3 \
+    requests \
+    urllib3 \
+    sodapy \
+    jupyter \
+    jupyterlab
+
+# Crear directorio para trabajos de Spark
+RUN mkdir -p /opt/bitnami/spark/jobs
+WORKDIR /opt/bitnami/spark
+
+USER 1001

@@ -1,0 +1,105 @@
+[2025-09-23T00:01:47.623+0000] {processor.py:161} INFO - Started process (PID=170) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:01:47.626+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:01:47.634+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:01:47.633+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:01:47.734+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:01:47.834+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:01:47.833+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:01:47.937+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:01:47.936+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-22 00:00:00+00:00, run_after=2025-09-23 00:00:00+00:00
+[2025-09-23T00:01:48.039+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.425 seconds
+[2025-09-23T00:02:18.159+0000] {processor.py:161} INFO - Started process (PID=176) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:02:18.161+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:02:18.172+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:02:18.168+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:02:18.238+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:02:19.011+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:02:19.010+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:02:19.110+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:02:19.109+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-22 00:00:00+00:00, run_after=2025-09-23 00:00:00+00:00
+[2025-09-23T00:02:19.172+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 1.036 seconds
+[2025-09-23T00:02:50.159+0000] {processor.py:161} INFO - Started process (PID=201) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:02:50.161+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:02:50.163+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:02:50.163+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:02:50.176+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:02:50.207+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:02:50.207+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:02:50.230+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:02:50.230+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-23 00:00:00+00:00, run_after=2025-09-24 00:00:00+00:00
+[2025-09-23T00:02:50.251+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.098 seconds
+[2025-09-23T00:03:21.222+0000] {processor.py:161} INFO - Started process (PID=226) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:03:21.223+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:03:21.225+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:03:21.225+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:03:21.237+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:03:21.270+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:03:21.269+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:03:21.295+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:03:21.295+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-23 00:00:00+00:00, run_after=2025-09-24 00:00:00+00:00
+[2025-09-23T00:03:21.317+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.102 seconds
+[2025-09-23T00:03:52.305+0000] {processor.py:161} INFO - Started process (PID=231) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:03:52.308+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:03:52.310+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:03:52.309+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:03:52.323+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:03:52.352+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:03:52.352+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:03:52.374+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:03:52.374+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-23 00:00:00+00:00, run_after=2025-09-24 00:00:00+00:00
+[2025-09-23T00:03:52.398+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.102 seconds
+[2025-09-23T00:04:23.355+0000] {processor.py:161} INFO - Started process (PID=236) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:04:23.355+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:04:23.357+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:04:23.356+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:04:23.377+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:04:23.414+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:04:23.414+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:04:23.439+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:04:23.439+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-23 00:00:00+00:00, run_after=2025-09-24 00:00:00+00:00
+[2025-09-23T00:04:23.464+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.116 seconds
+[2025-09-23T00:04:54.426+0000] {processor.py:161} INFO - Started process (PID=241) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:04:54.427+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:04:54.429+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:04:54.428+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:04:54.444+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:04:54.481+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:04:54.480+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:04:54.509+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:04:54.509+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-23 00:00:00+00:00, run_after=2025-09-24 00:00:00+00:00
+[2025-09-23T00:04:54.531+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.111 seconds
+[2025-09-23T00:05:25.528+0000] {processor.py:161} INFO - Started process (PID=246) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:05:25.529+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:05:25.532+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:05:25.532+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:05:25.545+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:05:25.578+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:05:25.577+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:05:25.602+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:05:25.602+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-23 00:00:00+00:00, run_after=2025-09-24 00:00:00+00:00
+[2025-09-23T00:05:25.623+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.100 seconds
+[2025-09-23T00:05:56.580+0000] {processor.py:161} INFO - Started process (PID=251) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:05:56.584+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:05:56.587+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:05:56.587+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:05:56.605+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:05:56.664+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:05:56.663+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:05:56.710+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:05:56.709+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-23 00:00:00+00:00, run_after=2025-09-24 00:00:00+00:00
+[2025-09-23T00:05:56.754+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.186 seconds
+[2025-09-23T00:06:27.679+0000] {processor.py:161} INFO - Started process (PID=256) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:06:27.680+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:06:27.683+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:06:27.682+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:06:27.697+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:06:27.731+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:06:27.731+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:06:27.755+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:06:27.754+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-23 00:00:00+00:00, run_after=2025-09-24 00:00:00+00:00
+[2025-09-23T00:06:27.781+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.108 seconds
+[2025-09-23T00:06:57.820+0000] {processor.py:161} INFO - Started process (PID=261) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:06:57.821+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:06:57.822+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:06:57.822+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:06:57.836+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:06:57.867+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:06:57.866+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:06:57.888+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:06:57.888+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-23 00:00:00+00:00, run_after=2025-09-24 00:00:00+00:00
+[2025-09-23T00:06:57.907+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.093 seconds
+[2025-09-23T00:07:28.843+0000] {processor.py:161} INFO - Started process (PID=266) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:07:28.844+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:07:28.845+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:07:28.845+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:07:28.857+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:07:28.888+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:07:28.888+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:07:28.908+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:07:28.908+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-23 00:00:00+00:00, run_after=2025-09-24 00:00:00+00:00
+[2025-09-23T00:07:28.928+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.091 seconds
+[2025-09-23T00:07:59.938+0000] {processor.py:161} INFO - Started process (PID=289) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:07:59.945+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:07:59.947+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:07:59.947+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:07:59.957+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:07:59.988+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:07:59.988+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:08:00.015+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:08:00.015+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-23 00:00:00+00:00, run_after=2025-09-24 00:00:00+00:00
+[2025-09-23T00:08:00.039+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.107 seconds
+[2025-09-23T00:08:30.975+0000] {processor.py:161} INFO - Started process (PID=312) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:08:30.977+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:08:30.979+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:08:30.978+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:08:30.991+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:08:31.041+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:08:31.041+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:08:31.061+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:08:31.061+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-23 00:00:00+00:00, run_after=2025-09-24 00:00:00+00:00
+[2025-09-23T00:08:31.080+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.110 seconds
+[2025-09-23T00:09:02.118+0000] {processor.py:161} INFO - Started process (PID=317) to work on /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:09:02.119+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/spark_iceberg_pipeline.py for tasks to queue
+[2025-09-23T00:09:02.121+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:09:02.120+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:09:02.139+0000] {processor.py:840} INFO - DAG(s) 'spark_iceberg_pipeline' retrieved from /opt/airflow/dags/spark_iceberg_pipeline.py
+[2025-09-23T00:09:02.181+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:09:02.181+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2025-09-23T00:09:02.228+0000] {logging_mixin.py:188} INFO - [2025-09-23T00:09:02.228+0000] {dag.py:3947} INFO - Setting next_dagrun for spark_iceberg_pipeline to 2025-09-23 00:00:00+00:00, run_after=2025-09-24 00:00:00+00:00
+[2025-09-23T00:09:02.248+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/spark_iceberg_pipeline.py took 0.136 seconds

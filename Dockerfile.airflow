@@ -1,0 +1,26 @@
+FROM apache/airflow:2.9.3
+
+
+USER root
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+USER airflow
+
+# Instalar paquetes Python específicos para Airflow
+RUN pip install --no-cache-dir \
+    apache-airflow-providers-apache-spark==4.11.0 \
+    apache-airflow-providers-openlineage>=1.8.0 \
+    pyspark==3.3.1 \
+    pandas \
+    boto3 \
+    requests \
+    urllib3 \
+    sodapy
+
+# Crear directorios necesarios
+RUN mkdir -p /opt/airflow/{dags,logs,jobs}
