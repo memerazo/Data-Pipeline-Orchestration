@@ -1,6 +1,9 @@
 # Definir los anchors primero
 x-spark-common: &spark-common
-  image: custom-spark:latest
+  build:
+    context: .
+    dockerfile: Dockerfile.spark
+  image: custom-spark:3.5.0
   networks:
     - data-stack
   environment:
@@ -47,6 +50,8 @@ services:
       - AWS_SECRET_ACCESS_KEY=password  # Minio password  
     volumes: 
       - ./jobs:/opt/bitnami/spark/jobs
+    networks:
+      - data-stack
 
   # Spark Worker
   spark-worker:
@@ -65,6 +70,8 @@ services:
       - AWS_SECRET_ACCESS_KEY=password  # Minio password
     volumes:
       - ./jobs:/opt/bitnami/spark/jobs
+    networks:
+      - data-stack
       
   # Jupyter Notebook con PySpark
   jupyter:
@@ -73,7 +80,7 @@ services:
     ports:
       - "8888:8888"  # Acceso a Jupyter Notebook
     volumes:
-      - ./notebooks:/opt/bitnami/spark/notebooks
+      - ./scripts:/opt/bitnami/spark/notebooks
       - ./requirements.txt:/tmp/requirements.txt
     environment:
       - SPARK_MASTER=spark://spark-master:7077
@@ -117,6 +124,10 @@ services:
       "
     depends_on:
       - postgres
+    environment:
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+
 
   # Servidor web de Airflow
   webserver:
@@ -127,6 +138,11 @@ services:
       - "8080:8080"  # UI de Airflow
     depends_on:
       - init-airflow
+    environment:
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+    networks:
+      - data-stack
    
   # Scheduler de Airflow
   scheduler:
@@ -135,6 +151,11 @@ services:
     command: scheduler
     depends_on:
       - init-airflow
+    environment:
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+    networks:
+      - data-stack
 
   # MinIO (Almacenamiento S3-compatible)
   minio:

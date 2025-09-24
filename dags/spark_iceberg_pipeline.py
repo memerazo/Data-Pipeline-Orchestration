@@ -1,134 +1,126 @@
-from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator
 from airflow.operators.python import PythonOperator
-from airflow.operators.empty import EmptyOperator
-from airflow.utils.dates import days_ago
+from datetime import datetime, timedelta
+import os
 
 default_args = {
     'owner': 'airflow',
-    'depends_on_past': False,
-    'start_date': days_ago(1),
-    'email_on_failure': False,
-    'email_on_retry': False,
     'retries': 1,
-    'retry_delay': timedelta(minutes=5)
+    'retry_delay': timedelta(minutes=5),
 }
 
+# =========================
+# Funciones para cada paso
+# =========================
+
+def setup_minio():
+    import boto3
+    minio_client = boto3.client(
+        's3',
+        endpoint_url='http://minio:9000',
+        aws_access_key_id='admin',
+        aws_secret_access_key='password',
+        region_name='us-east-1'
+    )
+    # Aquí podrías validar la conexión o crear buckets si es necesario
+
+def start_spark():
+    global spark, conf
+    import pyspark
+    from pyspark.sql import SparkSession
+
+    CATALOG_URI = "http://nessie:19120/api/v1"
+    WAREHOUSE = "s3://gold/"
+    STORAGE_URI = "http://172.18.0.2:9000"
+    AWS_ACCESS_KEY = 'admin'
+    AWS_SECRET_KEY = 'password'
+
+    conf = (
+        pyspark.SparkConf()
+        .setAppName('combined_spark_app')
+        .set('spark.jars.packages', 'org.postgresql:postgresql:42.7.3,'
+                                    'org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,'
+                                    'org.projectnessie.nessie-integrations:nessie-spark-extensions-3.5_2.12:0.77.1,'
+                                    'software.amazon.awssdk:bundle:2.24.8,'
+                                    'software.amazon.awssdk:url-connection-client:2.24.8,'
+                                    'org.apache.hadoop:hadoop-aws:3.2.0,'
+                                    'com.amazonaws:aws-java-sdk-bundle:1.11.534')
+        .set('spark.sql.extensions', 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,'
+                                     'org.projectnessie.spark.extensions.NessieSparkSessionExtensions')
+        .set('spark.sql.catalog.nessie', 'org.apache.iceberg.spark.SparkCatalog')
+        .set('spark.sql.catalog.nessie.uri', CATALOG_URI)
+        .set('spark.sql.catalog.nessie.ref', 'main')
+        .set('spark.sql.catalog.nessie.authentication.type', 'NONE')
+        .set('spark.sql.catalog.nessie.catalog-impl', 'org.apache.iceberg.nessie.NessieCatalog')
+        .set('spark.sql.catalog.nessie.s3.endpoint', STORAGE_URI)
+        .set('spark.sql.catalog.nessie.warehouse', WAREHOUSE)
+        .set('spark.sql.catalog.nessie.io-impl', 'org.apache.iceberg.aws.s3.S3FileIO')
+        .set('spark.hadoop.fs.s3a.endpoint', STORAGE_URI)
+        .set('spark.hadoop.fs.s3a.access.key', AWS_ACCESS_KEY)
+        .set('spark.hadoop.fs.s3a.secret.key', AWS_SECRET_KEY)
+        .set('spark.hadoop.fs.s3a.path.style.access', 'true')
+        .set("spark.hadoop.fs.s3a.aws.credentials.provider",
+             "org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider")
+    )
+    spark = SparkSession.builder.config(conf=conf).getOrCreate()
+    print("Spark Session Started")
+
+def read_parquet():
+    from pyspark.sql import SparkSession
+    spark = SparkSession.getActiveSession()
+    global df_taxis
+    df_taxis = spark.read.parquet("s3a://bronze/yellow_tripdata_2025-01.parquet")
+    df_taxis.printSchema()
+    df_taxis.show(5)
+
+def create_namespace():
+    from pyspark.sql import SparkSession
+    spark = SparkSession.getActiveSession()
+    spark.sql("CREATE NAMESPACE IF NOT EXISTS nessie.gold;").show()
+
+def write_to_iceberg():
+    from pyspark.sql import SparkSession
+    spark = SparkSession.getActiveSession()
+    global df_taxis
+    df_taxis.writeTo("nessie.gold.yellowtrip").createOrReplace()
+
+# =========================
+# Definición del DAG
+# =========================
+
 with DAG(
-    'spark_iceberg_pipeline',
+    dag_id='spark_iceberg_dag',
     default_args=default_args,
-    description='Orquestacion del pipeline de Spark-iceberg',
-    schedule_interval=timedelta(days=1),
-    catchup=False
+    description='Carga de datos Parquet a Iceberg usando Spark, Nessie y MinIO',
+    schedule_interval=None,
+    start_date=datetime(2025, 9, 24),
+    catchup=False,
+    tags=['spark', 'iceberg', 'nessie', 'minio'],
 ) as dag:
 
-    def check_nessie_connection():
-        """Verifica que nessie este disponible"""
-        import requests
-        import logging
-
-        logger = logging.getLogger(__name__)
-
-        try:
-            response = requests.get("http://nessie:19120/api/v1/config", timeout=30)
-            if response.status_code == 200:
-                logger.info("✅ Nessie está disponible")
-                return True
-            else:
-                logger.error(f"❌ Nessie respondió con código HTTP {response.status_code}")
-                logger.error(f"Respuesta: {response.text[:200]}...")
-                return False
-                           
-        except requests.exceptions.ConnectionError:
-            logger.error("❌ No se puede conectar a Nessie. Verifica:")
-            logger.error("1. Que el servicio 'nessie' esté ejecutándose")
-            logger.error("2. Que el puerto 19120 esté expuesto")
-            logger.error("3. Que la red Docker esté configurada correctamente")
-            return False
-        except Exception as e:
-            logger.error(f"❌ Error conectando a Nessie: {str(e)}")
-            return False
-
-    def check_minio_connection():
-        """Verificar que MinIO este disponible""" 
-        import boto3
-        from botocore.exceptions import ClientError
-        import logging
-
-        logger = logging.getLogger(__name__)
-        
-        try:
-            minio_client = boto3.client(
-                's3',
-                endpoint_url='http://minio:9000',
-                aws_access_key_id='admin',
-                aws_secret_access_key='password',
-                region_name='us-east-1'
-            )
-            
-            buckets = minio_client.list_buckets()
-            logger.info("✅ MinIO está disponible")
-            return True
-
-        except ClientError as e:
-            logger.error(f"❌ Error conectando a MinIO: {str(e)}")
-            raise Exception(f"Error conectando a MinIO: {str(e)}")
-        except Exception as e:
-            logger.error(f"❌ Error inesperado: {str(e)}")
-            raise Exception(f"Error inesperado conectando a MinIO: {str(e)}")
-
-    def check_all_connections():
-        """Verifica que todos los servicios estén disponibles"""
-        nessie_ok = check_nessie_connection()
-        minio_ok = check_minio_connection()
-        
-        if nessie_ok and minio_ok:
-            print("✅ Todas las conexiones están funcionando correctamente")
-            return True
-        else:
-            raise Exception("❌ Una o más conexiones fallaron")
-
-    # Task para verificar conexiones
-    check_connections = PythonOperator(
-        task_id='check_connections',
-        python_callable=check_all_connections,
+    t1 = PythonOperator(
+        task_id='setup_minio',
+        python_callable=setup_minio,
     )
 
-    # Task principal - procesamiento de datos con Spark
-    # NOTA: No usar parámetro 'master', usar 'conf' en su lugar
-    process_taxi_data = SparkSubmitOperator(
-        task_id='process_taxi_data',
-        application='/opt/airflow/jobs/process_taxi_data.py',
-        conn_id='spark_default',
-        verbose=True,
-        conf={
-            # Configuración del master a través de conf
-            'spark.master': 'spark://spark-master:7077',
-            'spark.jars.packages': (
-                'org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,'
-                'org.projectnessie.nessie-integrations:nessie-spark-extensions-3.5_2.12:0.90.1,'
-                'org.apache.hadoop:hadoop-aws:3.3.4,'
-                'com.amazonaws:aws-java-sdk-bundle:1.12.262'
-            ),
-            'spark.sql.extensions': 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions,org.projectnessie.spark.extensions.NessieSparkSessionExtensions',
-            'spark.sql.catalog.nessie': 'org.apache.iceberg.spark.SparkCatalog',
-            'spark.sql.catalog.nessie.uri': 'http://nessie:19120/api/v1',
-            'spark.sql.catalog.nessie.ref': 'main',
-            'spark.sql.catalog.nessie.authentication.type': 'NONE',
-            'spark.sql.catalog.nessie.catalog-impl': 'org.apache.iceberg.nessie.NessieCatalog',
-            'spark.sql.catalog.nessie.s3.endpoint': 'http://minio:9000',
-            'spark.sql.catalog.nessie.warehouse': 's3://gold/',
-            'spark.sql.catalog.nessie.io-impl': 'org.apache.iceberg.aws.s3.S3FileIO',
-            'spark.hadoop.fs.s3a.endpoint': 'http://minio:9000',
-            'spark.hadoop.fs.s3a.access.key': 'admin',
-            'spark.hadoop.fs.s3a.secret.key': 'password',
-            'spark.hadoop.fs.s3a.path.style.access': 'true'
-        }
+    t2 = PythonOperator(
+        task_id='start_spark',
+        python_callable=start_spark,
     )
 
-    # Task final
-    end = EmptyOperator(task_id='end')
+    t3 = PythonOperator(
+        task_id='read_parquet',
+        python_callable=read_parquet,
+    )
 
-    # Definir el flujo del DAG
-    check_connections >> process_taxi_data >> end
+    t4 = PythonOperator(
+        task_id='create_namespace',
+        python_callable=create_namespace,
+    )
+
+    t5 = PythonOperator(
+        task_id='write_to_iceberg',
+        python_callable=write_to_iceberg,
+    )
+
+    t1 >> t2 >> t3 >> t4 >> t5

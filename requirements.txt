@@ -6,3 +6,4 @@ pandas
 urllib3
 boto3
 sodapy
+matplotlib
